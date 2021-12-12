@@ -1,0 +1,85 @@
+
+#pragma once
+
+#include "ISequence.hpp"
+#include "List.hpp"
+
+template<typename T>
+class ListSequence : public ISequence<T>{
+public:
+
+    // **** Constructors ****
+
+    ListSequence();
+    ListSequence(T const *, size_t);
+    ListSequence(List<T> const &);
+
+
+    // ** Copy Constructor **
+
+    ListSequence(ListSequence<T> const &);
+
+
+    // **** Destructor ****
+
+    ~ListSequence() = default;
+
+
+    // **** Comparison Operators ****
+
+    template<typename TT>
+    friend bool operator==(ListSequence<TT> const &, ListSequence<TT> const &);
+
+    template<typename TT>
+    friend bool operator!=(ListSequence<TT> const &, ListSequence<TT> const &);
+
+    // **** Operators ****
+
+    template<typename TT>
+    friend ListSequence<TT> operator+(ListSequence<TT> const &, ListSequence<TT> const &);
+    T operator[](size_t) const;
+    T & operator[](size_t);
+    ListSequence<T> & operator=(ListSequence<T> const &);
+
+    template<typename TT>
+    friend std::istream & operator>>(std::istream &, ListSequence<TT> &);
+
+    template<typename TT>
+    friend std::ostream & operator<<(std::ostream &, ListSequence<TT> const &);
+
+    // **** Getters ****
+
+    List<T> GetList() const;
+    List<T> & GetList();
+    T GetFirst() const;
+    T & GetFirst();
+    T GetLast() const;
+    T & GetLast();
+    T GetElementData(size_t) const;
+    T & GetElementData(size_t);
+    size_t GetSize() const;
+
+
+    // **** Setters ****
+
+    void SetSize(size_t);
+    void Set(size_t, T);
+
+
+    // **** Modifiers ****
+
+    void Prepend(T);
+    void InsertAt(size_t, T);
+    void Append(T);
+    void PopFirst();
+    void EraseAt(size_t);
+    void PopBack();
+
+private:
+
+    List<T> list_;
+
+};
+
+
+#include "ListSequenceImplementation.hpp"
