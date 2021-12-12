@@ -1,6 +1,3 @@
-//
-// Created by Vasiliy Evdokimov on 20.04.2020.
-//
 
 #pragma once
 
